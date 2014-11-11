@@ -2,7 +2,7 @@ var express = require('express'),
 	path    = require('path'),
 	app = express(),
 	http = require('http'),
-	io = require('socket.io').listen(app.listen(3000));
+	io = require('socket.io').listen(app.listen(8080));
 
 app.use(express.static(path.join(__dirname, '/static')));
 
