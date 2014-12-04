@@ -22,7 +22,6 @@ io.sockets.on('connection', function (socket) {
 	socket.on('mousemove', function (data) {
 		// This line sends the event (broadcasts it)
 		// to everyone except the originating client.
-		console.log(data);
 		socket.broadcast.to(socket.room).emit('moving', data);
 	});
 });
