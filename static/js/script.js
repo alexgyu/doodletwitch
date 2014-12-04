@@ -9,7 +9,7 @@ $(function () {
     "use strict";
 
     // The URL of your web server (the port is set in app.js)
-    var url = 'http://localhost:8080', //'http://54.148.25.160',
+    var url = 'http://54.148.25.160', //'http://localhost:8080', 
         doc = $(document),
         win = $(window),
         canvas = $('#paper'),
@@ -69,7 +69,6 @@ $(function () {
         if (offsetTime - lastTime > INTERVAL) {
             lastTime = offsetTime;
             ctx.clearRect(0, 0, canvas.attr("width"), canvas.attr("width"));
-            console.log(lines.length);
             for (l in lines) {
                 if (offsetTime - lines[l].drawTime < LINEINTERVAL) {
                     drawLine(lines[l].fx, lines[l].fy, lines[l].tx, lines[l].ty, lines[l].wr, lines[l].hr, false);
