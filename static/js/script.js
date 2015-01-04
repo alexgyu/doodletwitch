@@ -171,6 +171,7 @@ $(function () {
 
     // Remove inactive clients after 10 seconds of inactivity
     setInterval(function () {
+        var ident;
 
         for (ident in clients) {
             if ($.now() - clients[ident].updated > 10000) {
