@@ -92,7 +92,7 @@ $(function () {
         return false;
     }
 
-asd
+
     // set channel source
     $('#strim').attr("src", "https://www-cdn.jtvnw.net/widgets/live_embed_player.swf?channel=" + pathname);
 
