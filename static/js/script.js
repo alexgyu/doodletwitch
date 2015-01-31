@@ -9,7 +9,7 @@ $(function () {
     "use strict";
 
     // The URL of your web server (the port is set in app.js)
-    var url = 'http://54.148.25.160', //'http://localhost:8080', 
+    var url = 'https://doodletwitch.herokuapp.com/', //'http://localhost:8080', 
         doc = $(document),
         win = $(window),
         canvas = $('#paper'),
