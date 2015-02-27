@@ -45,7 +45,7 @@
 /* Basic */
 
 	body {
-		background: #fff;
+		background: #19191f;
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
@@ -62,7 +62,7 @@
 		}
 
 	body, input, select, textarea {
-		color: #444;
+		color: #bbb;
 		font-family: Arial, Helvetica, sans-serif;
 		font-size: 13pt;
 		font-weight: normal;
@@ -79,7 +79,7 @@
 		}
 
 	strong, b {
-		color: #666;
+		color: #bbb;
 		font-weight: bold;
 	}
 
@@ -92,7 +92,7 @@
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #666;
+		color: #bbb;
 		font-weight: bold;
 		line-height: 1em;
 		margin: 0 0 1em 0;
@@ -224,20 +224,45 @@
 		margin-top: -0.6em;
 		line-height: 1.5em;
 	}
+/* Banner */
 
+	#banner {
+		background: url('../img/TwitchDoodlebgdrawn.png') no-repeat -4px;
+        padding: 8em 0;
+        text-align: center;
+        background-size: cover;
+        height: 680px;
+        color: white;
+	}
+
+		#banner :last-child {
+			margin-bottom: 0;
+		}
+
+		#banner h2 {
+			font-size: 4em;
+			line-height: 1em;
+			margin: 0 0 0.5em 0;
+			padding: 0;
+            
+		}
+
+		#banner p {
+			font-size: 1.5em;
+			margin-bottom: 1.75em;
+		}
 
 /* Main */
 
-	#banner {
-		background: url('../img/TwitchDoodlebg.png') no-repeat cover;
-        padding: 8em 0;
-        text-align: center;
-	}
+    .intro {
+        
+    }
+
 
 /* Footer */
 
 	#footer {
-		background: #f2f2f2;
+		background: #19191f;
 		padding: 4em 0;
 	}
 
