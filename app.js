@@ -11,6 +11,10 @@ app.get('/:id', function(req, res) {
 	res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '/views/home.html'));
+});
+
 io.sockets.on('connection', function (socket) {
 
 	socket.on('joinRoom', function(room) {
