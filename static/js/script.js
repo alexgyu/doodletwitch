@@ -2,38 +2,35 @@
 /*global $, jQuery, alert, io, window*/
 
 var INTERVAL = 50,
-    LINEINTERVAL = 4000,
+    FADEVAL = 0.03,
     STARTTIME = Date.now();
 
 $(function () {
     "use strict";
 
     // The URL of your web server (the port is set in app.js)
-    var url = 'http://54.148.25.160', //'http://localhost:8080', 
+    var url = 'https://doodletwitch.herokuapp.com/', //'http://localhost:8080', 
         doc = $(document),
         win = $(window),
         canvas = $('#paper'),
         ctx = canvas[0].getContext('2d'),
         pathname = window.location.pathname,
         drawing = false,
-        lastTime = 0;
-    // get rid of '/'
-    pathname = pathname.substring(1);
+        lastTime = 0,
 
-    // Generate a unique ID
-    var id = Math.round($.now() * Math.random());
-
-
-
-    var clients = {},
+        // Generate a unique ID
+        id = Math.round($.now() * Math.random()),
+        
+        clients = {},
         cursors = {},
         lines = [];
 
+    // get rid of '/'
+    pathname = pathname.substring(1);
+
     // Functions
-    function drawLine(fromx, fromy, tox, toy, wratio, hratio, save) {
-        ctx.beginPath();
-        ctx.moveTo(fromx * wratio, fromy * hratio);
-        ctx.lineTo(tox * wratio, toy * hratio);
+    function drawLine(fromx, fromy, tox, toy, wratio, hratio, save, opacity) {
+      
         if (save) {
             lines.push({
                 fx: fromx,
@@ -42,9 +39,13 @@ $(function () {
                 ty: toy,
                 wr: wratio,
                 hr: hratio,
-                drawTime: Date.now()
+                opacity: opacity
             });
         }
+        ctx.globalAlpha = opacity;
+        ctx.beginPath();
+        ctx.moveTo(fromx * wratio, fromy * hratio);
+        ctx.lineTo(tox * wratio, toy * hratio);
         ctx.lineWidth = 3;
         ctx.stroke();
     }
@@ -61,7 +62,6 @@ $(function () {
     window.addEventListener('resize', resizeCanvas, false);
 
     // refresh canvas
-    // TODO: redraw elements that shouldn't be cleared yet with higher opacity
     function animate(highResTimestamp) {
         var l,
             offsetTime = highResTimestamp + STARTTIME;
@@ -70,12 +70,12 @@ $(function () {
             lastTime = offsetTime;
             ctx.clearRect(0, 0, canvas.attr("width"), canvas.attr("width"));
             for (l in lines) {
-                if (offsetTime - lines[l].drawTime < LINEINTERVAL) {
-                    drawLine(lines[l].fx, lines[l].fy, lines[l].tx, lines[l].ty, lines[l].wr, lines[l].hr, false);
-                }
-                else {
+                if (lines[l].opacity > 0) {
+                    drawLine(lines[l].fx, lines[l].fy, lines[l].tx, lines[l].ty, lines[l].wr, lines[l].hr, false, lines[l].opacity);
+                    lines[l].opacity -= FADEVAL;
+                } else {
                     // else delete first element which should be oldest
-                    lines.shift();   
+                    lines.shift();  
                 }
             }
         }
@@ -84,9 +84,9 @@ $(function () {
         // Animate something...
     }
 
-
-
-    // This demo depends on the canvas element
+    // End Functions
+    
+    // check if canvas
     if (!('getContext' in document.createElement('canvas'))) {
         alert('Sorry, it looks like your browser does not support canvas!');
         return false;
@@ -121,7 +121,7 @@ $(function () {
             // Draw a line on the canvas. clients[data.id] holds
             // the previous position of this user's mouse pointer
 
-            drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y, wratio, hratio, true);
+            drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y, wratio, hratio, true, 1);
         }
 
         // Saving the current client state
@@ -136,6 +136,9 @@ $(function () {
         drawing = true;
         prev.x = e.pageX;
         prev.y = e.pageY;
+        ctx.lineJoin = ctx.lineCap = 'round';
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = 'rgb(0, 0, 0)';
     });
 
     doc.bind('mouseup mouseleave', function () {
@@ -161,8 +164,7 @@ $(function () {
         // not received in the socket.on('moving') event above
 
         if (drawing) {
-
-            drawLine(prev.x, prev.y, e.pageX, e.pageY, 1, 1, true);
+            drawLine(prev.x, prev.y, e.pageX, e.pageY, 1, 1, true, 1);
 
             prev.x = e.pageX;
             prev.y = e.pageY;

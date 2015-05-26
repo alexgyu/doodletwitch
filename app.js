@@ -2,13 +2,17 @@ var express = require('express'),
 	path    = require('path'),
 	app = express(),
 	http = require('http'),
-	io = require('socket.io').listen(app.listen(8080));
+	io = require('socket.io').listen(app.listen(process.env.PORT || 8080));
 
 app.use(express.static(path.join(__dirname, '/static')));
 
 app.get('/:id', function(req, res) {
 	console.log(req.params.id);
 	res.sendFile(path.join(__dirname, '/views/index.html'));
+});
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '/views/home.html'));
 });
 
 io.sockets.on('connection', function (socket) {
