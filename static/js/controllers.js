@@ -22,7 +22,7 @@ app.controller('AppCtrl', function ($scope, $http, $location) {
     $scope.doodleStream = function (stream) {
         
         //i just wanna change the page man
-        window.location.href=$location.path('/' + stream).absUrl();
+        window.location.href=$location.absUrl()+stream;
     }
 
 });
