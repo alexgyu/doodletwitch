@@ -10,7 +10,7 @@ app.config(function ($locationProvider) {
 app.controller('AppCtrl', function ($scope, $http, $location) {
 
 
-    $http.get('https://api.twitch.tv/kraken/streams/featured?limit=20').
+    $http.jsonp("https://api.twitch.tv/kraken/streams/featured?limit=20&callback=JSON_CALLBACK").
     success(function (data, status, headers, config) {
         $scope.streamList = data.featured;
     }).
