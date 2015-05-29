@@ -2,6 +2,7 @@ var express = require('express'),
 	path    = require('path'),
 	app = express(),
 	http = require('http'),
+    //angular = require('angular'),
 	io = require('socket.io').listen(app.listen(process.env.PORT || 8080));
 
 app.use(express.static(path.join(__dirname, '/static')));

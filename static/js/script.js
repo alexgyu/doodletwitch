@@ -79,7 +79,7 @@ $(function () {
                 }
             }
         }
-
+        
         requestAnimationFrame(animate);
         // Animate something...
     }
@@ -97,6 +97,8 @@ $(function () {
     $('#strim').attr("src", "http://www.twitch.tv/" + pathname + "/embed");
 
     var socket = io.connect(url);
+    
+    console.log(socket);
 
     socket.emit('joinRoom', pathname);
 
@@ -185,7 +187,7 @@ $(function () {
                 delete cursors[ident];
             }
         }
-
+        
     }, 10000);
 
     animate(0);
