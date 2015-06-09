@@ -18,7 +18,7 @@ body {
   color: #212121; }
 
 a {
-  color: #FF5722;
+  color: #FFC107;
   position: relative;
   text-decoration: none;
   transition: all 0.15s ease-out; }
@@ -28,7 +28,7 @@ a {
     width: 100%;
     height: 1px;
     bottom: 0px;
-    background: #FF5722;
+    background: #FFC107;
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out 0s; }
@@ -64,7 +64,7 @@ a {
   .stream-card:hover {
     transition: all 300ms;
     transform: scale(1.01);
-    background-color: #FF5722; }
+    background-color: #FFC107; }
 
 #cursors {
   position: relative; }
@@ -85,7 +85,7 @@ footer {
   background-color: #212121;
   color: #FAFAFA; }
   footer a {
-    color: #FF5722;
+    color: #FFC107;
     position: relative;
     text-decoration: none;
     transition: all 0.15s ease-out; }
@@ -95,7 +95,7 @@ footer {
       width: 100%;
       height: 1px;
       bottom: 0px;
-      background: #FF5722;
+      background: #FFC107;
       visibility: hidden;
       transform: scaleX(0);
       transition: all 0.3s ease-in-out 0s; }
