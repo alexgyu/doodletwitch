@@ -4,8 +4,8 @@
 <head>
     <title>doodletwitch</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="doodletwitch allows you to draw and see other people drawing over any Twitch.tv stream in real time." />
+    <meta name="keywords" content="twitch doodle draw stream " />
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- The stylesheets -->
@@ -19,59 +19,69 @@
 </head>
 
 <body>
-    <div layout="column" layout-margin layout-padding  ng-controller="AppCtrl as appCtrl" ng-app="MyApp">
-            <div id="main" flex>
-                <section>
-                    <h2>Welcome to doodletwitch!</h2>
-                    <p>doodletwitch allows you to draw and see other people drawing over any twitch stream. To use it, add /active_stream_name to the end of the url, or check out some featured streams below.</p>
-                    </br>
-                    <p>Very much work in progress, check back for updates!</p>
-                </section>
-            </div>
-            <div id="grid" class="grid-container" flex>
-                <md-grid-list md-cols-gt-lg="4" md-cols-lg="2" md-cols-md="2" md-cols-sm="1" md-row-height="4:3" md-gutter="3px">
-<!---->
-                    <md-grid-tile ng-repeat="stream in streamList" ng-click="doodleStream(stream.stream.channel.name)">
-                        <md-card md-ink-ripple>
-                            <img class="md-card-image" ng-src="{{ stream.stream.preview.large }}" alt="{{ stream.title }} preview">
-                            <md-card-footer>
-                                <h4 class="stream-title">{{ stream.title }}</h3>
-                                <h5>{{ stream.stream.game }}</h3>
+    <div layout="column"  ng-controller="AppCtrl as appCtrl" ng-app="MyApp">
+        <div id="main" flex layout-padding>
+            <section>
+                <h2>Welcome to doodletwitch!</h2>
+                <p>doodletwitch allows you to draw and see other people drawing over any Twitch.tv stream. To use it, add /active_stream_name to the end of the url, or check out some featured streams below.</p>
+                <br/>
+                <p>Very much work in progress, check back for updates! Feel free to <a target="_blank" href="mailto:alexgxiyu@gmail.com">contact</a> me with any bug finds or suggestions!</p>
+            </section>
+        </div>
+        <div id="grid" class="grid-container" flex layout-margin layout-padding>
+            <md-grid-list md-cols-gt-lg="4" md-cols-lg="2" md-cols-md="2" md-cols-sm="1" md-row-height="4:3" md-gutter="3px">
+                <!---->
+                <md-grid-tile ng-repeat="stream in streamList" ng-click="doodleStream(stream.stream.channel.name)">
+                    <md-card  md-ink-ripple="#FAFAFA" class="stream-card">
+                        <img class="md-card-image" ng-src="{{ stream.stream.preview.large }}" alt="{{ stream.title }} preview">
+                        <md-card-footer layout="row">
+                                <div flex>
+                                    <h4 class="stream-title">{{ stream.title }}</h4>
+                                    <h5>{{ stream.stream.game || "N\A"}}</h5>
+                                </div>
+                                <div flex>
+                                    <p class="stream-viewers md-accent md-caption">{{ stream.stream.viewers }}</p>
+                                </div>
                             </md-card-footer>
                         </md-card>
 
                     </md-grid-tile>
                 </md-grid-list>
             </div>
+
     </div>
+        <!-- Footer -->
 
-    <!-- Footer -->
-
-    <footer id="footer" layout-margin layout-padding layout-align="center center">
-        <div layout="row" layout-sm="column">
-            <div flex>
-                <h2>About</h2>
-                <p>Created by Alex Yu</p>
-                <p>Hosted on <a target="_blank" href="https://www.heroku.com/">Heroku</a>
-                </p>
+        <footer id="footer" layout-padding >
+            <div layout="row" layout-sm="column">
+                <div flex =["33"]></div>
+                <div flex layout-align="center center">
+                    <h2>About</h2>
+                    <br/>
+                    <p>Created by Alex Yu</p>
+                    <br/>
+                    <p>Hosted on <a target="_blank" href="https://www.heroku.com/">Heroku</a>
+                    </p>
+                </div>
+                <div flex layout-align="center center">
+                    <h2>Contact me</h2>
+                    <md-list>
+                        <md-list-item><a target="_blank" href="mailto:alexgxiyu@gmail.com">Email</a>
+                        </md-list-item>
+                        <md-list-item><a target="_blank" href="https://twitter.com/alexgxiyu">Twitter</a>
+                        </md-list-item>
+                        <md-list-item><a target="_blank" href="https://www.linkedin.com/in/alexgyu">LinkedIn</a>
+                        </md-list-item>
+                    </md-list>
+                    </ul>
+                </div>
+                <div flex =["33"]></div>
             </div>
-            <div flex>
-                <h3>Contact me</h3>
-                <md-list>
-                    <md-list-item><a target="_blank" href="mailto:alexgxiyu@gmail.com">Email</a>
-                    </md-list-item>
-                    <md-list-item><a target="_blank" href="https://www.facebook.com/AlexGYu">Facebook</a>
-                    </md-list-item>
-                    <md-list-item><a target="_blank" href="https://www.linkedin.com/in/alexgyu">LinkedIn</a>
-                    </md-list-item>
-                </md-list>
-                </ul>
+            <div class="copyright" layout="row" layout-padding layout-align="center center">
+                &copy; doodletwitch. All rights reserved.
             </div>
-        </div>
-        <div class="copyright" layout="row" layout-padding layout-align="center center">
-            &copy; doodletwitch. All rights reserved.
-        </div>
-    </footer>-
+        </footer>
+    
 
     <!-- Angular Material Dependencies -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>

@@ -13,18 +13,58 @@ footer,
 header {
   display: block; }
 
+html,
+body {
+  color: #212121; }
+
+a {
+  color: #FF5722;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.15s ease-out; }
+  a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0px;
+    background: #FF5722;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s; }
+  a:hover {
+    transition: all 0.15s ease-out; }
+    a:hover:before {
+      visibility: visible;
+      transform: scaleX(1); }
+
 /* To remove the scrollbars */
 /*-------------------------
 	Main Area
 --------------------------*/
-.grid-container md-grid-tile {
-  transition: all 400ms ease-out 50ms; }
-  .grid-container md-grid-tile md-card {
-    cursor: pointer; }
-  .grid-container md-grid-tile md-card-footer {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; }
+#main {
+  padding: 20px; }
+
+.grid-container {
+  min-height: 800px; }
+  .grid-container md-grid-tile {
+    transition: all 200ms linear; }
+    .grid-container md-grid-tile md-card {
+      cursor: pointer; }
+    .grid-container md-grid-tile md-card-footer {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+
+.stream-viewers {
+  text-align: right; }
+
+.stream-card {
+  transition: all 300ms; }
+  .stream-card:hover {
+    transition: all 300ms;
+    transform: scale(1.01);
+    background-color: #FF5722; }
 
 #cursors {
   position: relative; }
@@ -40,3 +80,27 @@ header {
   z-index: -500;
   width: 100%;
   height: 100%; }
+
+footer {
+  background-color: #212121;
+  color: #FAFAFA; }
+  footer a {
+    color: #FF5722;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.15s ease-out; }
+    footer a:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: 0px;
+      background: #FF5722;
+      visibility: hidden;
+      transform: scaleX(0);
+      transition: all 0.3s ease-in-out 0s; }
+    footer a:hover {
+      transition: all 0.15s ease-out; }
+      footer a:hover:before {
+        visibility: visible;
+        transform: scaleX(1); }
