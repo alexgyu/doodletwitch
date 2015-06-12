@@ -98,9 +98,7 @@ $(function () {
 
     var socket = io.connect(url);
     
-    console.log(socket);
-
-    socket.emit('joinRoom', pathname);
+    socket.emit('joinRoom', pathname);  
 
     socket.on('moving', function (data) {
         var wratio = win.width() / data.width;
