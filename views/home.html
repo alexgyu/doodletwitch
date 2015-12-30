@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- The stylesheets -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.0/angular-material.min.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="/css/style.css">
     <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <base href="/">
 </head>
 
-<body>
-    <div layout="column"  ng-controller="AppCtrl as appCtrl" ng-app="MyApp">
+<body ng-controller="AppCtrl as appCtrl" ng-app="MyApp">
+    <div layout="column">
         <div id="main" flex layout-padding>
             <section>
                 <h2>Welcome to doodletwitch!</h2>
@@ -28,76 +28,80 @@
                 <p>Very much work in progress, check back for updates! Feel free to <a target="_blank" href="mailto:alexgxiyu@gmail.com">contact</a> me with any bug finds or suggestions!</p>
             </section>
         </div>
-        <div id="grid" class="grid-container" flex layout-margin layout-padding>
-            <md-grid-list md-cols-gt-lg="4" md-cols-lg="2" md-cols-md="2" md-cols-sm="1" md-row-height="4:3" md-gutter="3px">
+        <div id="grid" ng-show="streamsLoaded" class="grid-container" flex layout-margin layout-padding>
+            <md-grid-list md-cols-sm="1" md-cols-md="3" md-cols-gt-md="4" md-row-height="4:3" md-gutter="2px">
                 <!---->
                 <md-grid-tile ng-repeat="stream in streamList" ng-click="doodleStream(stream.stream.channel.name)">
                     <md-card  md-ink-ripple="#FAFAFA" class="stream-card">
-                        <img class="md-card-image" ng-src="{{ stream.stream.preview.large }}" alt="{{ stream.title }} preview">
+                        <img class="md-card-image stream-preview" ng-src="{{ stream.stream.preview.large }}" alt="{{ stream.title }} preview">
                         <md-card-footer layout="row">
                                 <div flex>
                                     <h4 class="stream-title">{{ stream.title }}</h4>
                                     <h5>{{ stream.stream.game || "N\A"}}</h5>
                                 </div>
                                 <div flex>
-                                    <p class="stream-viewers md-accent md-caption">{{ stream.stream.viewers }}</p>
+                                    <p class="stream-viewers md-accent md-caption">{{ stream.stream.viewers }} viewers</p>
                                 </div>
                             </md-card-footer>
                         </md-card>
-
-                    </md-grid-tile>
-                </md-grid-list>
-            </div>
-
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
     </div>
-        <!-- Footer -->
+    <!-- Footer -->
 
-        <footer id="footer" layout-padding >
-            <div layout="row" layout-sm="column">
-                <div flex =["33"]></div>
-                <div flex layout-align="center center">
-                    <h2>About</h2>
-                    <br/>
-                    <p>Created by Alex Yu</p>
-                    <br/>
-                    <p>Hosted on <a target="_blank" href="https://www.heroku.com/">Heroku</a>
-                    </p>
-                </div>
-                <div flex layout-align="center center">
-                    <h2>Contact me</h2>
-                    <md-list>
-                        <md-list-item><a target="_blank" href="mailto:alexgxiyu@gmail.com">Email</a>
-                        </md-list-item>
-                        <md-list-item><a target="_blank" href="https://twitter.com/alexgxiyu">Twitter</a>
-                        </md-list-item>
-                        <md-list-item><a target="_blank" href="https://www.linkedin.com/in/alexgyu">LinkedIn</a>
-                        </md-list-item>
-                    </md-list>
-                    </ul>
-                </div>
-                <div flex =["33"]></div>
+    <footer id="footer" layout-padding>
+        <div layout="row">
+            <div flex=[ "33"]></div>
+            <div flex layout-align="center center">
+                <h2>About</h2>
+                <br/>
+                <p>Created by Alex Yu</p>
+                <br/>
+                <p>Hosted on <a target="_blank" href="https://www.heroku.com/">Heroku</a>
+                </p>
             </div>
-            <div class="copyright" layout="row" layout-padding layout-align="center center">
-                &copy; doodletwitch. All rights reserved.
+            <div flex layout-align="center center">
+                <h2>Contact me</h2>
+                <md-list>
+                    <md-list-item><a target="_blank" href="mailto:alexgxiyu@gmail.com">Email</a>
+                    </md-list-item>
+                    <md-list-item><a target="_blank" href="https://twitter.com/alexgxiyu">Twitter</a>
+                    </md-list-item>
+                    <md-list-item><a target="_blank" href="https://www.linkedin.com/in/alexgyu">LinkedIn</a>
+                    </md-list-item>
+                </md-list>
+                </ul>
             </div>
-        </footer>
-    
+            <div flex=[ "33"]></div>
+        </div>
+        <div class="copyright" layout="row" layout-padding layout-align="center center">
+            &copy; doodletwitch. All rights reserved.
+        </div>
+    </footer>
+
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-      ga('create', 'UA-64051222-1', 'auto');
-      ga('send', 'pageview');
-
+        ga('create', 'UA-64051222-1', 'auto');
+        ga('send', 'pageview');
     </script>
     <!-- Angular Material Dependencies -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-messages.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.0/angular-material.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js'></script>
     <script src="js/controllers.js"></script>
 </body>
