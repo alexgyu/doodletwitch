@@ -94,7 +94,7 @@ $(function () {
 
 
     // set channel source
-    $('#strim').attr("src", "http://www.twitch.tv/" + pathname + "/embed");
+    $('#strim').attr("src", "https://www.twitch.tv/" + pathname + "/embed");
 
     var socket = io.connect(url);
     
