@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- The stylesheets -->
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="/css/style.css">
     <!--[if lt IE 9]>
@@ -28,12 +28,15 @@
                 <p>Very much work in progress, check back for updates! Feel free to <a target="_blank" href="mailto:alexgxiyu@gmail.com">contact</a> me with any bug finds or suggestions!</p>
             </section>
         </div>
-        <div id="grid" ng-show="streamsLoaded" class="grid-container" flex layout-margin layout-padding>
-            <md-grid-list md-cols-sm="1" md-cols-md="3" md-cols-gt-md="4" md-row-height="4:3" md-gutter="2px">
+        <div id="grid" ng-show="streamsLoaded" class="grid-container" >
+            <md-grid-list
+                        md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="5"
+                        md-row-height="4:3"
+                        md-gutter="2px" md-gutter-gt-sm="2px" >
                 <!---->
-                <md-grid-tile ng-repeat="stream in streamList" ng-click="doodleStream(stream.stream.channel.name)">
-                    <md-card  md-ink-ripple="#FAFAFA" class="stream-card">
-                        <img class="md-card-image stream-preview" ng-src="{{ stream.stream.preview.large }}" alt="{{ stream.title }} preview">
+                <md-grid-tile md-colspan="1" ng-repeat="stream in streamList" ng-click="doodleStream(stream.stream.channel.name)">
+                    <md-card md-ink-ripple="#FAFAFA" class="stream-card">
+                        <img class="md-card-image" ng-src="{{ stream.stream.preview.large }}" alt="{{ stream.title }} preview">
                         <md-card-footer layout="row">
                                 <div flex>
                                     <h4 class="stream-title">{{ stream.title }}</h4>
@@ -73,7 +76,7 @@
                 </md-list>
                 </ul>
             </div>
-            <div flex=[ "33"]></div>
+            <div flex=["33"]></div>
         </div>
         <div class="copyright" layout="row" layout-padding layout-align="center center">
             &copy; doodletwitch. All rights reserved.
@@ -101,7 +104,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.js"></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js'></script>
     <script src="js/controllers.js"></script>
 </body>

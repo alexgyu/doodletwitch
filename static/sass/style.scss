@@ -72,6 +72,8 @@ a {
         transition: all 200ms linear;
         md-card {
             cursor: pointer;
+            display:block;
+            max-width: 100%;
         }
         md-card-footer {
             white-space: nowrap; 
@@ -96,8 +98,11 @@ a {
     }
 }
 
-img.stream-preview {
-    width: 100%; 
+.stream-title {
+    width: 175px;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden
 }
 
 #cursors {
