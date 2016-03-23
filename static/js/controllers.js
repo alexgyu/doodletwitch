@@ -11,7 +11,7 @@ app.controller('AppCtrl', function ($scope, $http, $location) {
 
     $scope.streamsLoaded = false;
 
-    $http.jsonp("https://api.twitch.tv/kraken/streams/featured?limit=20&callback=JSON_CALLBACK").
+    $http.get("https://api.twitch.tv/kraken/streams/featured?limit=20").
     success(function (data, status, headers, config) {
         $scope.streamList = data.featured;
         $scope.streamsLoaded = true;
